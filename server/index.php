@@ -1,4 +1,8 @@
 <?php
+    require_once '../../zend/library/Zend/Loader/StandardAutoloader.php';
+    $loader = new Zend\Loader\StandardAutoloader(array('autoregister_zf' => true));
+    $loader->register();
+
     class Server
     {
         public function __construct()
@@ -34,16 +38,13 @@
 
     if( isset( $_GET['wsdl'] ) )
     {
-        $autodiscover = new Zend_Soap_AutoDiscover();
+        $autodiscover = new Zend\Soap\AutoDiscover();
         $autodiscover->setClass( 'Server' );
+        $autodiscover->setUri('http://mri-dev.com/webservice-soap/server/');
         $autodiscover->handle();
     } else {
-        $soap = new SoapServer(null, array(
-            'uri' => 'http://mri-dev.com/webservice-soap/server/'
-        ));
+        $soap = new Zend\Soap\Server("http://mri-dev.com/webservice-soap/server/?wsdl");
         $soap->setClass('Server');
         $soap->handle();
     }
-
-
 ?>

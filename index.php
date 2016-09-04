@@ -1,9 +1,6 @@
 <?php
 
-$client = new SoapClient( null, array(
-    'location' => 'http://mri-dev.com/webservice-soap/server/',
-    'uri' => 'http://mri-dev.com/webservice-soap/server/'
-) );
+$client = new SoapClient( 'http://mri-dev.com/webservice-soap/server/?wsdl' );
 
 $re = $client->Test();
 
