@@ -3,17 +3,27 @@
     $loader = new Zend\Loader\StandardAutoloader(array('autoregister_zf' => true));
     $loader->register();
 
+    ini_set("soap.wsdl_cache_enabled", 0);
     class Server
     {
         public function __construct()
         {
         }
-        public function Test( $param = array() )
+        /**
+         * Test object function
+         * @return string
+         * */
+        public function Test()
         {
+            //return 'TEST';
             return $this->output(__FUNCTION__, $param);
         }
-
-        public function HotelNumbers($num = 1)
+        /**
+         * Return hotel numbers
+         * @param int $num Numbers of hotel to generate
+         * @return string
+         * */
+        public function HotelNumbers($num)
         {
             $rooms = array();
             while($num >= 1 ){
